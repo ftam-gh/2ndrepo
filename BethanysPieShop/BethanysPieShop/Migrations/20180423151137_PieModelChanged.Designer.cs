@@ -11,32 +11,15 @@ using System;
 namespace BethanysPieShop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180423151137_PieModelChanged")]
+    partial class PieModelChanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("BethanysPieShop.Models.Feedback", b =>
-                {
-                    b.Property<int>("FeedbackId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("ContactMe");
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("Message");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("FeedbackId");
-
-                    b.ToTable("Feedbacks");
-                });
 
             modelBuilder.Entity("BethanysPieShop.Models.Pie", b =>
                 {

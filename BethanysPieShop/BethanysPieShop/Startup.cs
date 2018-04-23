@@ -27,6 +27,7 @@ namespace BethanysPieShop
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("BethanyDemo123")));
             services.AddTransient<IPieRepository,PieRepository>();
+            services.AddTransient<IFeedbackRepository,FeedbackRepository>();  
             services.AddMvc();
         }
 
@@ -36,8 +37,14 @@ namespace BethanysPieShop
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
-            app.UseNodeModules(env.ContentRootPath); 
-            app.UseMvcWithDefaultRoute();
+            app.UseNodeModules(env.ContentRootPath);
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}"
+                    );
+            });
         }
     }
 }

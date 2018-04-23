@@ -27,5 +27,13 @@ namespace BethanysPieShop.Controllers
             model.Title = "Welcome to Bethany's Pie Shop";
             return View(model);
         }
+
+        public IActionResult Detail(int id)
+        {
+            var model = _pieRepository.GetPieById(id);
+            if (model == null)
+                return NotFound();
+            return View(model);
+        }
     }
 }

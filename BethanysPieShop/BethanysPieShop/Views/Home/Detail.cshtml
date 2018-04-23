@@ -1,0 +1,21 @@
+﻿@model Pie
+
+<div class="container">
+    <div class="row col-12">
+        <h2>@Model.Name</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="img-thumbnail">
+                <img alt="@Model.Name" src="@Model.ImageUrl" class="col-12">
+                <figcaption>
+                    <h3 class="float-right">@Model.Price</h3>
+                    <a href="#">@Model.Name</a>
+                    <h4>@Model.ShortDescription</h4>
+                    <p>@Model.LongDescription</p>
+                </figcaption>
+            </div>
+        </div>
+    </div>
+</div>
