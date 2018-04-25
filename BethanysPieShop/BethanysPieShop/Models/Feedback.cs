@@ -9,7 +9,7 @@ namespace BethanysPieShop.Models
 {
     public class Feedback
     {
-        [BindNever] // these are attributes that are used for validation
+        [BindNever] // these are attributes that are used for validation,model binding has to occur for the validation to be triggered,ensure you check for model state in the controllers
         public int FeedbackId { get; set; } 
         [Required]
         [StringLength(100,ErrorMessage ="Your name is required")]

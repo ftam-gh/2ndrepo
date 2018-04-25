@@ -26,13 +26,13 @@ namespace BethanysPieShop.Controllers
         [HttpPost]
         public IActionResult Index(Feedback feedback)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) //only when model state is valid and validation is passed before the information entered would be added to the database
             {
                 _feedback.AddFeedback(feedback);
                 return RedirectToAction("FeedbackComplete");
 
             }
-            return View();
+            return View(feedback);
         }
 
         public IActionResult FeedbackComplete()

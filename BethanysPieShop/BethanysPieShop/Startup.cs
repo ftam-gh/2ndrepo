@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +7,7 @@ using BethanysPieShop.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +27,16 @@ namespace BethanysPieShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("BethanyDemo123")));
+            services.AddIdentity<IdentityUser, IdentityRole>(
+                options =>
+                {
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequiredLength = 2;
+                    options.Password.RequireUppercase = false;
+                }
+                )
+            .AddEntityFrameworkStores<AppDbContext>();
             services.AddTransient<IPieRepository,PieRepository>();
             services.AddTransient<IFeedbackRepository,FeedbackRepository>();  
             services.AddMvc();
@@ -36,8 +47,9 @@ namespace BethanysPieShop
         {
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
-            app.UseStaticFiles();
+            app.UseStaticFiles();   
             app.UseNodeModules(env.ContentRootPath);
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
