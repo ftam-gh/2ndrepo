@@ -32,7 +32,6 @@ namespace BethanysPieShop.Controllers
             {
                 _feedback.AddFeedback(feedback);
                 return RedirectToAction("FeedbackComplete");
-
             }
             return View(feedback);
         }
